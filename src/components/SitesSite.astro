@@ -1,13 +1,13 @@
 ---
 interface Props {
 	name: string;
-    href: string;
-	info: string;
-	color: string;
+	href: string;
+	info: string|null;
 	full: boolean;
+	color: string;
 }
 
-const { name, href, info, color, full } = Astro.props;
+const { name, href, info, full, color } = Astro.props;
 ---
 
 <li class={
@@ -16,12 +16,15 @@ const { name, href, info, color, full } = Astro.props;
 	}>
 	<a
 		href={href}
-		class="flex flex-col space-y-1 justify-center items-center w-full h-24"
+		class={
+			"flex flex-col space-y-1 justify-center items-center w-full"
+			+ (info ? " h-24" : " h-12")
+		}
 	>
 		<h2
 			class="text-xl text-transparent font-bold bg-clip-text"
 			style=`background-color: ${color};`
 		>{name}</h2>
-		<small class="">{info}</small>
+		{info && <small class="">{info}</small>}
 	</a>
 </li>
