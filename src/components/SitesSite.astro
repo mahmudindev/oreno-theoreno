@@ -1,0 +1,27 @@
+---
+interface Props {
+	name: string;
+    href: string;
+	info: string;
+	color: string;
+	full: boolean;
+}
+
+const { name, href, info, color, full } = Astro.props;
+---
+
+<li class={
+		"rounded-md border hover:bg-neutral-50 hover:text-black"
+		+ (full ? " col-span-2" : "")
+	}>
+	<a
+		href={href}
+		class="flex flex-col space-y-1 justify-center items-center w-full h-24"
+	>
+		<h2
+			class="text-xl text-transparent font-bold bg-clip-text"
+			style=`background-color: ${color};`
+		>{name}</h2>
+		<small class="">{info}</small>
+	</a>
+</li>

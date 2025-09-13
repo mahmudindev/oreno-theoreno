@@ -1,11 +1,32 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import "../styles/global.css";
 import Layout from '../layouts/Layout.astro';
+import Welcome from '../components/Welcome.astro';
+import Sites from '../components/Sites.astro';
+import background from '../assets/background.svg';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const name = 'The Oreno';
+const slog = 'An Insignificant Mortal Dream Projects';
 ---
 
-<Layout>
-	<Welcome />
+<Layout title={`${name}: ${slog}`}>
+	<div class="container mx-auto">
+		<img id="background" src={background.src} alt="" fetchpriority="high" />
+		<main class="">
+			<Welcome name={name} slog={slog} />
+			<Sites />
+		</main>
+	</div>
 </Layout>
+
+<style>
+	#background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -1;
+		filter: blur(100px);
+	}
+</style>
